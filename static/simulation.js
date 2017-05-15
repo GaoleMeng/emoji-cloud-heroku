@@ -17,7 +17,7 @@ var whetherchange = false;
 var whetherclick = false;
 var zoomin = false;
 var zoomout = false
-
+var inicamera;
 var curTxt=document.createElement('div');
 document.body.appendChild(curTxt);
 
@@ -46,18 +46,19 @@ $.getJSON('/static/emoji_json_withname.json',function(data){
 
 
    render();
-   window.addEventListener('resize' , onWindowResize , false);
+ 
 
 
 
    function init(){
+
 
    scene = new THREE.Scene();
    camera = new THREE.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 0.1, 1000 );
    //camera.position.z = 1000;
    var axes = new THREE.AxisHelper(1);
    scene.add(axes);
-
+   inicamera = camera;
 
     renderer = new THREE.WebGLRenderer();
     var geometry = new THREE.BoxGeometry( 1, 1, 1 );
@@ -187,7 +188,12 @@ $.getJSON('/static/emoji_json_withname.json',function(data){
         
     // })
 
-
+    window.addEventListener('resize' , onWindowResize , false);
+       function onWindowResize() {
+    camera.aspect = window.innerWidth / window.innerHeight;
+     camera.updateProjectionMatrix();
+    renderer.setSize( window.innerWidth, window.innerHeight );
+   }
     // },false);
 
     //conbineMesh = new THREE.Mesh(conbineGeo, material);
@@ -229,19 +235,21 @@ $.getJSON('/static/emoji_json_withname.json',function(data){
    function onDocumentMouseMove(){
     event.preventDefault();
 
-   mouse.x = ( event.clientX / window.innerWidth ) * 2 - 1;
-   mouse.y = - ( event.clientY / window.innerHeight ) * 2 + 1;
+    mouse.x = ( event.clientX / window.innerWidth ) * 2 - 1;
+    mouse.y = - ( event.clientY / window.innerHeight ) * 2 + 1;
    }
 
    $("#container").mousedown(function(){
-
-     whetherclick = true;
+      inicamera = camera;
+      whetherclick = true;
   });
    $("#rotate").mousedown(function(){
       if (whetherclick == true){
+        camera = inicamera;
         whetherclick = false;
       }
       else{
+        inicamera = camera;
         whetherclick = true;
       }
       
@@ -273,8 +281,10 @@ $.getJSON('/static/emoji_json_withname.json',function(data){
     }
 
     if (!whetherclick){
+
       camera.position.x = 8 * Math.cos( angle );
       camera.position.z = 8 * Math.sin( angle );
+      camera.position.y = 7;
       angle += 0.002;
     }
 
@@ -327,10 +337,7 @@ $.getJSON('/static/emoji_json_withname.json',function(data){
    }
 
 
-   function onWindowResize() {
-    camera.aspect = window.innerWidth / window.innerHeight;
-    renderer.setSize( window.innerWidth, window.innerHeight );
-   }
+
 
    $("#submitb").click(function(){
 
