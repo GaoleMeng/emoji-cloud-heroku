@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>three.js webgl - interactive cubes (gpu)</title>
+		<meta charset="utf-8">
+		
+		<link rel="shortcut icon" href="/static/favicon.ico" type="image/x-icon">
+		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+		<style>
+			body {
+				font-family: Monospace;
+				background-color: #f0f0f0;
+				margin: 0px;
+				overflow: hidden;
+			}
+			.info {
+				position: absolute;
+				background-color: black;
+				opacity: 0.8;
+				color: white;
+				text-align: center;
+				top: 0px;
+				width: 100%;
+			}
+			.info a {
+				color: #00ffff;
+			}
+			#cursorText{
+				-webkit-text-fill-color: black;/*文字的填充色*/
+				-webkit-text-stroke: 0.5px white;
+				font-size: 20px;
+				font-weight: bold;
+			    position:absolute;
+
+			}
+			#controlpanel{
+				z-index: 99 ;
+				margin-left: 20px ;
+				position: absolute;
+				display: inline;
+			}
+			#container{
+				z-index: -1;
+			}
+			canvas {
+			    display: block; /* fix necessary to remove space at bottom of canvas */
+			}
+			#gaole{
+				z-index: 99 ;
+				margin-left: 20px ;
+				position: absolute;
+				display: inline;
+				margin-right: 20px;
+				margin-bottom: 20px;
+				right: 0%;
+				bottom: 0%;
+			}
+
+		</style>
+		<link href="//cdn.muicss.com/mui-0.9.16/css/mui.min.css" rel="stylesheet" type="text/css" />
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/tween.js/16.3.5/Tween.min.js"></script>
+   		<script src="//cdn.muicss.com/mui-0.9.16/js/mui.min.js"></script>
+   		<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.19.1/TweenMax.min.js"></script>
+		</head>
+		<body>
+		<div id="controlpanel">
+		    <div class="mui-textfield">
+					<input type="text" id="inp" placeholder="Input the emoji (text)" value ="">
+					<button type="submit" class="mui-btn mui-btn--raised" id="submitb">Submit</button>
+ 		   			<button type="submit" class="mui-btn mui-btn--raised" id="back">Reset</button>
+ 		   			<button type="submit" class="mui-btn mui-btn--raised" id="rotate">Rotate</button>
+			</div>
+
+      	</div>	
+      	<div class="mui--text-dark-secondary mui--text-title" id="gaole">Gaole Meng - Emoji Cloud</div>
+		<div id="container"></div>
+		
+
+			
+      	<script src="/static/lib/three.js"></script>
+		<script src="/static/lib/TrackballControls.js"></script>
+		<script src="/static/lib/jquery-3.1.1.min.js"></script>
+		<script src="/static/lib/stats.min.js"></script>
+		<script src="/static/simulation.js"></script>
+
+	</body>
+</html>
