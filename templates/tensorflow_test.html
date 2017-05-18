@@ -62,25 +62,53 @@
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/tween.js/16.3.5/Tween.min.js"></script>
    		<script src="//cdn.muicss.com/mui-0.9.16/js/mui.min.js"></script>
    		<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.19.1/TweenMax.min.js"></script>
+   		<script type="text/javascript">
+
+   			function activateModal() {
+             // initialize modal element-->
+             var modalEl = document.createElement('div');
+              modalEl.style.width = '400px';
+             modalEl.style.height = '300px';
+             modalEl.style.margin = '100px auto';
+              modalEl.style.backgroundColor = '#fff';
+              modalEl.style.padding = '20px';
+              // show modal-->\
+              modalEl.className = "mui--text-dark-secondary mui--text-subhead text-center";
+
+              var str = "The Emoji Cloud, a visualization of the semantic space of emojis, based on <a href = 'https://aaai.org/ocs/index.php/ICWSM/ICWSM17/paper/view/15705'>a recent paper at ICWSM</a>. Embeddings of emojis are trained using <a href = 'https://github.com/tangjianpku/LINE'>LINE</a> and the 3D layout is learned using <a href='https://github.com/lferry007/LargeVis/'>LargeVis</a>. Visualization created by Gaole Meng (gaole@umich.edu). The <a hreFf='http://foreseer.si.umich.edu/'>Foreseer</a> Group, the University of Michigan.";
+
+
+
+              modalEl.innerHTML = str;
+
+                mui.overlay('on', modalEl);
+       		}
+   		</script>
 		</head>
 		<body>
 		<div id="controlpanel">
 		    <div class="mui-textfield">
 					<input type="text" id="inp" placeholder="Input the emoji (text)" value ="">
 					<button type="submit" class="mui-btn mui-btn--raised" id="submitb">Submit</button>
- 		   			<button type="submit" class="mui-btn mui-btn--raised" id="back">Reset</button>
+ 		   			<button type="submit" class="mui-btn mui-btn--raised" id="back">Clear</button>
  		   			<button type="submit" class="mui-btn mui-btn--raised" id="rotate">Rotate</button>
+
 			</div>
 
       	</div>	
       	<div id="gaole">
-      	<div class="mui--text-dark-secondary mui--text-subhead text-center" >
-      		Gaole Meng - Emoji Cloud</br>
-      		gaole@umich.edu
-      	</div>
+<!--      	<div class="mui--text-dark-secondary mui--text-subhead text-center" >-->
+<!--      		The Emoji Cloud, a visualization of the semantic space of emojis,</br> based on <a href = "https://aaai.org/ocs/index.php/ICWSM/ICWSM17/paper/view/15705">a recent paper at ICWSM</a>.</br> -->
+<!---->
+<!--Embeddings of emojis are trained using <a href = "https://github.com/tangjianpku/LINE">LINE</br></a> and the 3D layout is learned using <a href="https://github.com/lferry007/LargeVis">LargeVis.</a></br>-->
+<!---->
+<!--Visualization created by Gaole Meng (gaole@umich.edu).</br>-->
+<!---->
+<!--The <http://foreseer.si.umich.edu/>Foreseer</a> Group, the University of Michigan. -->
+<!--      	</div>-->
+        <button class="mui-btn mui-btn--primary" onclick="activateModal()">Credit</button>
       	</div>
 		<div id="container"></div>
-		
 
 			
       	<script src="/static/lib/three.js"></script>

@@ -240,16 +240,13 @@ $.getJSON('/static/emoji_json_withname.json',function(data){
    }
 
    $("#container").mousedown(function(){
-      inicamera = camera;
       whetherclick = true;
   });
    $("#rotate").mousedown(function(){
       if (whetherclick == true){
-        camera = inicamera;
         whetherclick = false;
       }
       else{
-        inicamera = camera;
         whetherclick = true;
       }
       
@@ -279,12 +276,9 @@ $.getJSON('/static/emoji_json_withname.json',function(data){
 
         camera.updateProjectionMatrix();
     }
-
     if (!whetherclick){
-
-      camera.position.x = 8 * Math.cos( angle );
-      camera.position.z = 8 * Math.sin( angle );
-      camera.position.y = 7;
+      camera.position.x = Math.sqrt((camera.position.x * camera.position.x +camera.position.z*camera.position.z ) )* Math.cos( angle );
+      camera.position.z =  Math.sqrt((camera.position.x * camera.position.x +camera.position.z*camera.position.z ) ) * Math.sin( angle );
       angle += 0.002;
     }
 
